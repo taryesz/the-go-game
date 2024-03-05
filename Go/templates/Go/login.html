@@ -1,0 +1,21 @@
+{% extends 'Go/main.html' %}
+
+{% block title %}
+<title>The Go Game - Log In</title>
+{% endblock %}
+
+{% block header %}
+<h1>Log into your account!</h1>
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+
+    {{FORM.as_p}}
+
+
+    <input type="submit" name="Sign in">
+</form>
+{{ FORM.errors }}
+{% endblock %}

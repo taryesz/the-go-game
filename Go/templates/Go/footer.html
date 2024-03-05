@@ -1,0 +1,12 @@
+<div>
+  <hr>
+  <p>The Go Game</p>
+  <a href="{% url 'home' %}">Home Page</a>
+  <a href="{% url 'registration' %}">Join Us</a>
+  {% if not request.user.is_anonymous %}
+      {% include 'Go/logout.html' %}
+    (Signed in as <a href="{% url 'profile' request.user %}">{{request.user}}</a>)
+  {% else %}
+      <a href="{% url 'login' %}">Log In</a>
+  {% endif %}
+</div>

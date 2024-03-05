@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <!-- "User" block -->
+    <div>
+        <h1>Welcome back, {{ USER.username }}!</h1>
+
+        <img style="width: 100px" src="{{USER.profile_picture.url}}">
+        {% comment %}
+            NOTE: we have to add ".url" to actually see the picture, and not get redirected to
+            a separate window.
+        {% endcomment %}
+
+        <br>
+
+        {% include 'Go/logout.html' %}
+        <br>
+        {% if request.user.is_staff %}
+            <a href="{% url 'admin:index' %}">Go to admin panel</a>
+        {% endif %}
+
+        <div>
+            <h3>Your stats:</h3>
+            <table>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Total number of played games: </td>
+                    <td>{{PLAYS}}</td>
+                </tr>
+                <tr>
+                    <td>Victories: </td>
+                    <td>{{VICTORIES}}</td>
+                </tr>
+                <tr>
+                    <td>Losses: </td>
+                    <td>{{LOSSES}}</td>
+                </tr>
+                <tr>
+                    <td>Ties: </td>
+                    <td>{{TIES}}</td>
+                </tr>
+            </table>
+        </div>
+        <a href="{% url 'settings' USER.username %}">Settings</a>
+    </div>
+
+    <hr>
+    <!-- "Friends" block -->
+    <div>
+        <h3>Your friends:</h3>
+        <form method="POST" name="friends_list">
+            {% csrf_token %}
+            {% for friend in FRIENDS %}
+                <tr>
+                    <td>{{friend.username}}</td>
+                    <td><button type="submit" name="remove_friend" value="{{friend.username}}">Remove friend</button></td>
+                    <br>
+                </tr>
+            {% endfor %}
+        </form>
+
+        <hr>
+
+        <form method="GET">
+            {{FILTER.form}}
+            <button type="submit">Search</button>
+        </form>
+
+
+        {% if FILTER.data.username %}
+            <h3>Found:</h3>
+            <form method="POST" name="search_players">
+                {% csrf_token %}
+                {% for player in PLAYERS %}
+                    <tr>
+                        <td>{{player.username}}</td>
+                        <td><button type="submit" name="add_friend" value="{{player.username}}">Add friend</button></td>
+                    </tr>
+                    <br>
+                {% endfor %}
+            </form>
+        {% endif %}
+
+    </div>
+
+    <hr>
+    <h3>Game:</h3>
+    <!-- "Game" block -->
+    <form method="POST" action="{% url 'profile' USER.username %}">
+        {% csrf_token %}
+        {{GAME}}
+        <button type="submit" name="start_game" value="start_game">Start a game</button>
+    </form>
+
+    {% include 'Go/footer.html' %}
+
+</body>
+</html>

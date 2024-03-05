@@ -1,0 +1,35 @@
+<!--{% extends 'Go/main.html' %}-->
+<!--{% load static %}-->
+
+<!--{% block title %}-->
+<!--<title>The Go Game</title>-->
+<!--{% endblock %}-->
+
+<!--{% block header %}-->
+<!--<h1>Hi there!</h1>-->
+<!--{% endblock %}-->
+
+<!--{% block content %}-->
+<!--<p>Lorem ipsum dolor sit amet ...</p>-->
+<!--<img src="{% static 'images/abc.png' %}">-->
+<!--{% endblock %}-->
+
+
+
+
+
+{% for height in BOARD %}
+                <tr>
+                    {% for width in BOARD %}
+                        <td>
+                            {% if width|add:'x'|add:height in STONE_COORDINATES %}
+                                <button disabled>o</button>
+                                <!-- Debug output -->
+                                <p>Stone exists at {{ width }}x{{ height }}</p>
+                            {% else %}
+                                <button type="submit" name="stone" value="{{ width }}x{{ height }}">o</button>
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}

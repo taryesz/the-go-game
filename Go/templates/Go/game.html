@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<h3>User:</h3>
+<p>{{USER}}</p>
+
+<h3>Game:</h3>
+<p>{{GAME}}</p>
+
+<h3>STATS:</h3>
+<p>{{STATS.game}}</p>
+<p>{{STATS.player}}</p>
+<p>{{STATS.outcome}}</p>
+<p>{{STATS.duration}}</p>
+<p>{{STATS.captured_stones}}</p>
+<p>{{STATS.territory_points}}</p>
+
+<a href="{% url 'profile' USER.username %}">back</a>
+
+<hr>
+<h3>
+    Turn:
+    {% if STATS.last_move %}
+        Black
+    {% else %}
+        White
+    {% endif %}
+</h3>
+
+<div class="center" action="{% url 'play' USER.username GAME.id %}">
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {% for height in BOARD %}
+                <tr>
+                    {% with stone_found=False %}
+                        {% for width in BOARD %}
+                            <td>
+                                <button name="stone" value="{{width}}x{{height}}"
+                                        {% for stone in STONES %}
+                                            {% if stone.x_coord == width and stone.y_coord == height %}
+                                                {% if stone.color %}
+                                                    style="color: white;"
+                                                {% endif %}
+                                                disabled
+                                            {% else %}
+                                                type="submit"
+                                            {% endif %}
+                                        {% endfor %}>o</button>
+                            </td>
+                        {% endfor %}
+                    {% endwith %}
+                </tr>
+            {% endfor %}
+        </table>
+    </form>
+</div>
+
+<h3>{{ USER.username }}'s ( {{ GAME.start_with_color }}'s ) score: {{ STATS.captured_stones }}</h3>
+<h3>Guest's (
+    {% if GAME.start_with_color == 'Black' %}
+        White
+    {% else %}
+        Black
+    {% endif %}
+    's ) score: {{ GUEST_STATS.captured_stones }}</h3>
+
+</body>
+</html>

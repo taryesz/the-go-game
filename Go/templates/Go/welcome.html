@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Go Game</title>
+<!--    <style>-->
+<!--        * {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            box-sizing: border-box;-->
+<!--            font-family: sans-serif;-->
+<!--            color: white;-->
+<!--        }-->
+
+<!--        section {-->
+<!--            height: 100vh;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            scroll-snap-align: start;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            scroll-snap-type: y mandatory;-->
+<!--            overflow-y: scroll;-->
+<!--            height: 100vh;-->
+<!--        }-->
+
+<!--        .welcome {-->
+<!--            background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)) , url("images/welcome.jpg");-->
+<!--            background-position: center;-->
+<!--        }-->
+
+<!--        .welcome .title_wrapper {-->
+<!--            width: 100vw;-->
+<!--            height: 100vh;-->
+<!--            font-size: 100px;-->
+<!--            position: relative;-->
+<!--        }-->
+
+<!--        .welcome .title_wrapper h1 {-->
+<!--            left: 30px;-->
+<!--            bottom: 20%;-->
+<!--            position: absolute;-->
+<!--        }-->
+
+<!--        .welcome .title_wrapper p {-->
+<!--            left: 40px;-->
+<!--            bottom: 15%;-->
+<!--            position: absolute;-->
+<!--            font-size: 30px;-->
+<!--        }-->
+
+
+<!--        .two {-->
+<!--            background: rgb(0, 53, 0);-->
+<!--        }-->
+
+<!--        .three {-->
+<!--            background: rgb(0, 0, 64);-->
+<!--        }-->
+<!--    </style>-->
+</head>
+<body>
+
+<!--    <div class="container">-->
+<!--        <section class="welcome">-->
+<!--            <div class="title_wrapper">-->
+<!--                <h1 class="welcome-h1">play.go</h1>-->
+<!--                <p>by Taras Shuliakevych</p>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--        <section class="two">-->
+<!--            <div><h1>Two</h1></div>-->
+
+<!--        </section>-->
+<!--        <section class="three">-->
+<!--            <h1>Three</h1>-->
+<!--        </section>-->
+<!--    </div>-->
+
+<!--    -->
+
+
+
+
+
+
+
+
+    <!-- "Welcome" block -->
+    <div>
+        <h1>The Go Game</h1>
+        <p>by Taras Shuliakevych</p>
+    </div>
+
+    <!-- "About" block -->
+    <div>
+        <h2>About the project</h2>
+        <p>
+            Welcome to The Go Game - a place, where passion meets strategy! We're dedicated to bringing the ancient and
+            fascinating game of Go to players worldwide. Take a look at our main features:
+        </p>
+    </div>
+
+    <!-- "Feature 1" block -->
+    <div>
+        <h3>Adaptive AI Opponents</h3>
+        <p>
+            Test your skills against our AI opponents, with difficulty levels that cater to all levels of expertise.
+            Whether you're just starting or looking for a challenge, our adaptive algorithms ensure a dynamic and
+            engaging gaming experience every time.
+        </p>
+    </div>
+
+    <!-- "Feature 2" block -->
+    <div>
+        <h3>Learn and Improve</h3>
+        <p>
+            Explore our interactive tutorials to embark on your journey towards mastering the intricacies of Go.
+            New to the game? No need to fret - we've got everything you need.
+            Monitor your progress with personalized stats available in your profile, utilize our analysis tool to
+            track your gameplay development, identify areas for improvement, and elevate your skills!
+        </p>
+    </div>
+
+    <!-- "Feature 3" block -->
+    <div>
+        <h3>Multiplayer Excitement</h3>
+        <p>
+            Challenge your friends or match up against fellow enthusiasts in thrilling multiplayer battles.
+            With various gameplay options available, including turn-based and simultaneous modes, there's something
+            for everyone, from beginners to seasoned pros.
+        </p>
+    </div>
+
+    <!-- "Finale" block -->
+    <div>
+        <h1>So? What do you think?</h1>
+        <p>
+            Join us and immerse yourself in the captivating world of Go! Best of all, our service is completely free,
+            so you can enjoy endless gameplay without any cost. Whether you're a seasoned player or just starting out,
+            there's always something exciting waiting for you. Let's embark on this thrilling adventure together!
+        </p>
+        <a href="{% url 'registration' %}">Sign up</a>
+        <p>already a member? <a href="{% url 'login' %}">sign in</a></p>
+    </div>
+
+    {% include 'Go/footer.html' %}
+
+</body>
+</html>
+
